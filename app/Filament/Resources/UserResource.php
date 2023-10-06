@@ -20,7 +20,13 @@ class UserResource extends Resource
 {
   protected static ?string $model = User::class;
 
-  protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+  protected static ?string $navigationIcon = 'tabler-users';
+
+  protected static ?string $navigationLabel = 'Usuarios';
+
+  protected static ?string $modelLabel = 'Usuarios';
+
+  protected static ?string $navigationGroup = 'Gestión de usuarios';
 
   public static function form(Form $form): Form
   {
@@ -28,20 +34,24 @@ class UserResource extends Resource
       ->schema([
         TextInput::make('name')
           ->required()
-          ->maxLength(255),
+          ->maxLength(255)
+          ->label('Nombres'),
         TextInput::make('email')
           ->email()
           ->required()
-          ->maxLength(255),
+          ->maxLength(255)
+          ->label('Correo'),
         Forms\Components\TextInput::make('password')
           ->password()
           ->required()
           ->maxLength(255)
-          ->hiddenOn('edit'),
+          ->hiddenOn('edit')
+          ->label('Contraseña'),
         Select::make('roles')
           ->multiple()
           ->relationship('roles', 'name')
           ->preload()
+          ->label('Roles')
       ]);
   }
 
@@ -50,14 +60,18 @@ class UserResource extends Resource
     return $table
       ->columns([
         TextColumn::make('name')
-          ->searchable(),
+          ->searchable()
+          ->label('Nombres'),
         TextColumn::make('email')
-          ->searchable(),
+          ->searchable()
+          ->label('Correo'),
         TextColumn::make('email_verified_at')
           ->dateTime()
-          ->sortable(),
+          ->sortable()
+          ->label('Verificación'),
         TextColumn::make('roles.name')
-          ->sortable(),
+          ->sortable()
+          ->label('Roles'),
         TextColumn::make('created_at')
           ->dateTime()
           ->sortable()

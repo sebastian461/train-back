@@ -14,13 +14,17 @@ class CityRelationManager extends RelationManager
 {
   protected static string $relationship = 'city';
 
+  protected static ?string $modelLabel = 'Ciudad';
+
+
   public function form(Form $form): Form
   {
     return $form
       ->schema([
         Forms\Components\TextInput::make('name')
           ->required()
-          ->maxLength(255),
+          ->maxLength(255)
+          ->label('Nombre'),
       ]);
   }
 
@@ -29,7 +33,8 @@ class CityRelationManager extends RelationManager
     return $table
       ->recordTitleAttribute('name')
       ->columns([
-        Tables\Columns\TextColumn::make('name'),
+        Tables\Columns\TextColumn::make('name')
+          ->label('Nombre'),
       ])
       ->filters([
         //
