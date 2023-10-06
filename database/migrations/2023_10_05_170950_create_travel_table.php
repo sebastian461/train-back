@@ -15,10 +15,14 @@ return new class extends Migration
       $table->id();
       $table->unsignedBigInteger('train_id');
       $table->foreign('train_id')->references('id')->on('trains')->onDelete('cascade');
-      $table->unsignedBigInteger('origin');
-      $table->unsignedBigInteger('destiny');
-      $table->foreign('origin')->references('id')->on('cities')->onDelete('cascade');
-      $table->foreign('destiny')->references('id')->on('cities')->onDelete('cascade');
+      $table->unsignedBigInteger('country_origin');
+      $table->unsignedBigInteger('city_origin');
+      $table->unsignedBigInteger('country_destiny');
+      $table->unsignedBigInteger('city_destiny');
+      $table->foreign('country_origin')->references('id')->on('countries')->onDelete('cascade');
+      $table->foreign('city_origin')->references('id')->on('cities')->onDelete('cascade');
+      $table->foreign('country_destiny')->references('id')->on('countries')->onDelete('cascade');
+      $table->foreign('city_destiny')->references('id')->on('cities')->onDelete('cascade');
       $table->integer('places');
       $table->timestamp('date');
       $table->enum('status', ['wait', 'in progress', 'finalized', 'cancelled']);

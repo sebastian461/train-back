@@ -14,7 +14,7 @@ return new class extends Migration
     Schema::create('trains', function (Blueprint $table) {
       $table->id();
       $table->string('name');
-      $table->text('description');
+      $table->text('description')->nullable();
       $table->enum('status', ['operational', 'maintenance', 'out of service']);
       $table->timestamps();
     });
