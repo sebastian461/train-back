@@ -13,6 +13,11 @@ class Travel extends Model
 
   protected $guarded = [];
 
+  public function train(): BelongsTo
+  {
+    return $this->belongsTo(Train::class);
+  }
+
   public function countryOrigin(): BelongsTo
   {
     return $this->belongsTo(Country::class, 'country_origin');
