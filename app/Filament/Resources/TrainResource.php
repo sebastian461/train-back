@@ -4,6 +4,7 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\TrainResource\Pages;
 use App\Filament\Resources\TrainResource\RelationManagers;
+use App\Filament\Resources\TrainResource\RelationManagers\TravelRelationManager;
 use App\Models\Train;
 use Filament\Forms;
 use Filament\Forms\Components\Select;
@@ -62,7 +63,7 @@ class TrainResource extends Resource
   public static function getRelations(): array
   {
     return [
-      //
+      TravelRelationManager::class,
     ];
   }
 
