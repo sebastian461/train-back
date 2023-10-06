@@ -22,21 +22,28 @@ class TrainResource extends Resource
 {
   protected static ?string $model = Train::class;
 
-  protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+  protected static ?string $navigationIcon = 'tabler-train';
+
+  protected static ?string $navigationLabel = 'Trenes';
+
+  protected static ?string $modelLabel = 'Trenes';
+
+  protected static ?string $navigationGroup = 'Gestión de trenes y viajes';
 
   public static function form(Form $form): Form
   {
     return $form
       ->schema([
-        TextInput::make('name')->required(),
+        TextInput::make('name')->required()->label('Nombre'),
         Select::make('status')->options([
           'operational' => 'Operativo',
           'maintenance' => 'Mantenimiento',
           'out of service' => 'Fuera de servicio'
         ])
           ->required()
-          ->native(false),
-        Textarea::make('description'),
+          ->native(false)
+          ->label('Estado'),
+        Textarea::make('description')->label('Descripción'),
       ]);
   }
 
@@ -44,8 +51,8 @@ class TrainResource extends Resource
   {
     return $table
       ->columns([
-        TextColumn::make('name'),
-        TextColumn::make('status'),
+        TextColumn::make('name')->label('Nombre'),
+        TextColumn::make('status')->label('Estado'),
       ])
       ->filters([
         //

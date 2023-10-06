@@ -31,7 +31,8 @@ class TravelRelationManager extends RelationManager
           ->searchable()
           ->preload()
           ->live()
-          ->required(),
+          ->required()
+          ->label('País origen'),
         Select::make('city_origin')
           ->searchable()
           ->preload()
@@ -39,12 +40,14 @@ class TravelRelationManager extends RelationManager
           ->options(fn (Get $get): Collection => City::query()
             ->where('country_id', $get('country_origin'))
             ->pluck('name', 'id'))
-          ->native(false),
+          ->native(false)
+          ->label('Ciudad origen'),
         Select::make('country_destiny')
           ->options(Country::all()->pluck('name', 'id'))
           ->searchable()
           ->preload()
-          ->required(),
+          ->required()
+          ->label('País destino'),
         Select::make('city_destiny')
           ->searchable()
           ->preload()
@@ -52,32 +55,35 @@ class TravelRelationManager extends RelationManager
           ->options(fn (Get $get): Collection => City::query()
             ->where('country_id', $get('country_destiny'))
             ->pluck('name', 'id'))
-          ->native(false),
+          ->native(false)
+          ->label('Ciudad destino'),
         TextInput::make('places')
           ->numeric()
           ->step(10)
-          ->required(),
+          ->required()
+          ->label('Plazas'),
         DateTimePicker::make('date')
           ->seconds(false)
           ->native(false)
           ->minutesStep(15)
           ->minDate(now())
-          ->required(),
+          ->required()
+          ->label('Fecha'),
       ]);
   }
 
   public function table(Table $table): Table
   {
     return $table
-      ->recordTitleAttribute('origin')
+      ->recordTitleAttribute('train')
       ->columns([
-        TextColumn::make('countryOrigin.name'),
-        TextColumn::make('cityOrigin.name'),
-        TextColumn::make('countryDestiny.name'),
-        TextColumn::make('cityDestiny.name'),
-        TextColumn::make('places'),
-        TextColumn::make('date'),
-        TextColumn::make('status')
+        TextColumn::make('countryOrigin.name')->label('País origen'),
+        TextColumn::make('cityOrigin.name')->label('Ciudad origen'),
+        TextColumn::make('countryDestiny.name')->label('País destino'),
+        TextColumn::make('cityDestiny.name')->label('Ciudad destino'),
+        TextColumn::make('places')->label('Plazas'),
+        TextColumn::make('date')->label('Fecha'),
+        TextColumn::make('status')->label('Estado')
           ->badge()
           ->color(fn (string $state): string => match ($state) {
             'wait' => 'warning',

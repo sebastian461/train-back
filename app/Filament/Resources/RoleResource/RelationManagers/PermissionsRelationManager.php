@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Filament\Resources\CountryResource\RelationManagers;
+namespace App\Filament\Resources\RoleResource\RelationManagers;
 
 use Filament\Forms;
 use Filament\Forms\Form;
@@ -10,12 +10,9 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
-class CityRelationManager extends RelationManager
+class PermissionsRelationManager extends RelationManager
 {
-  protected static string $relationship = 'city';
-
-  protected static ?string $modelLabel = 'Ciudad';
-
+  protected static string $relationship = 'permissions';
 
   public function form(Form $form): Form
   {
@@ -34,7 +31,7 @@ class CityRelationManager extends RelationManager
       ->recordTitleAttribute('name')
       ->columns([
         Tables\Columns\TextColumn::make('name')
-          ->label('Nombre'),
+          ->label('Permiso'),
       ])
       ->filters([
         //

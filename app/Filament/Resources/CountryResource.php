@@ -18,7 +18,13 @@ class CountryResource extends Resource
 {
   protected static ?string $model = Country::class;
 
-  protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+  protected static ?string $navigationIcon = 'heroicon-o-globe-americas';
+
+  protected static ?string $navigationLabel = 'Paises';
+
+  protected static ?string $modelLabel = 'Paises';
+
+  protected static ?string $navigationGroup = 'Paises y ciudades';
 
   public static function form(Form $form): Form
   {
@@ -26,11 +32,13 @@ class CountryResource extends Resource
       ->schema([
         Forms\Components\TextInput::make('name')
           ->required()
-          ->maxLength(255),
+          ->maxLength(255)
+          ->label('Nombre'),
         Forms\Components\TextInput::make('phone_ext')
           ->tel()
           ->required()
-          ->maxLength(255),
+          ->maxLength(255)
+          ->label('Extensión'),
       ]);
   }
 
@@ -39,9 +47,11 @@ class CountryResource extends Resource
     return $table
       ->columns([
         Tables\Columns\TextColumn::make('name')
-          ->searchable(),
+          ->searchable()
+          ->label('Nombre'),
         Tables\Columns\TextColumn::make('phone_ext')
-          ->searchable(),
+          ->searchable()
+          ->label('Extensión'),
         Tables\Columns\TextColumn::make('created_at')
           ->dateTime()
           ->sortable()
