@@ -16,4 +16,14 @@ class Country extends Model
   {
     return $this->hasMany(City::class);
   }
+
+  public function travelOrigin(): HasMany
+  {
+    return $this->hasMany(Travel::class, 'country_origin');
+  }
+
+  public function travelDestiny(): HasMany
+  {
+    return $this->hasMany(Travel::class, 'country_destiny');
+  }
 }

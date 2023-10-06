@@ -20,11 +20,11 @@ class City extends Model
 
   public function travelOrigin(): HasMany
   {
-    return $this->hasMany(Travel::class, 'origin');
+    return $this->hasMany(Travel::class, 'city_origin');
   }
 
   public function travelDestiny(): HasMany
   {
-    return $this->hasMany(Travel::class, 'destiny');
+    return $this->hasMany(Travel::class, 'city_destiny');
   }
 }

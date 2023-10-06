@@ -13,14 +13,24 @@ class Travel extends Model
 
   protected $guarded = [];
 
+  public function countryOrigin(): BelongsTo
+  {
+    return $this->belongsTo(Country::class, 'country_origin');
+  }
+
   public function cityOrigin(): BelongsTo
   {
-    return $this->belongsTo(City::class, 'origin');
+    return $this->belongsTo(City::class, 'city_origin');
+  }
+
+  public function countryDestiny(): BelongsTo
+  {
+    return $this->belongsTo(Country::class, 'country_destiny');
   }
 
   public function cityDestiny(): BelongsTo
   {
-    return $this->belongsTo(City::class, 'destiny');
+    return $this->belongsTo(City::class, 'city_destiny');
   }
 
   public function user(): BelongsToMany
