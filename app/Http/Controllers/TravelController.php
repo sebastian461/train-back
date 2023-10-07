@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\TravelJob;
 use App\Models\Train;
 use App\Models\Travel;
 use Carbon\Carbon;
@@ -24,6 +25,8 @@ class TravelController extends Controller
       ->whereDate('date', '>=', $date)
       ->whereTime('date', '>=', $time)
       ->get();
+
+    TravelJob::dispatch();
 
     return response()->json([
       'message' => 'Travels available',
