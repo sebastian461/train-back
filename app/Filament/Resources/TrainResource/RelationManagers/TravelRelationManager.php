@@ -65,7 +65,6 @@ class TravelRelationManager extends RelationManager
         DateTimePicker::make('date')
           ->seconds(false)
           ->native(false)
-          ->minutesStep(15)
           ->minDate(now())
           ->required()
           ->label('Fecha'),

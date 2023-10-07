@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\TravelController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -22,9 +23,12 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 /* AuthController */
 Route::post('login', [AuthController::class, 'login']);
 Route::post('register', [AuthController::class, 'register']);
-
 /* Middleware */
 Route::middleware(['auth:sanctum'])->group(function () {
   /* AuthController */
   Route::post('logout', [AuthController::class, 'logout']);
+
+  /* TravelController */
+  Route::get('travel', [TravelController::class, 'index']);
+  Route::get('travel/{id}', [TravelController::class, 'show']);
 });
