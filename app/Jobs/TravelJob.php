@@ -28,12 +28,18 @@ class TravelJob implements ShouldQueue
    */
   public function handle(): void
   {
-    //sleep(60);
     $date = Carbon::now()->toDateString();
     $time = Carbon::now()->toTimeString();
+
+    DB::table('travel')
+      ->where('status', 'in progress')
+      ->orWhere('status', 'wait')
+      ->whereDate('date', '<', $date)
+      ->update(['status' => 'finalized']);
+
     DB::table('travel')
       ->where('status', 'wait')
-      ->whereDate('date', '<=', $date)
+      ->whereDate('date', $date)
       ->whereTime('date', '<=', $time)
       ->update(['status' => 'in progress']);
   }
