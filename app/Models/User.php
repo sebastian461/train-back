@@ -48,7 +48,7 @@ class User extends Authenticatable implements FilamentUser
     'password' => 'hashed',
   ];
 
-  public function travel(): BelongsToMany
+  public function travels(): BelongsToMany
   {
     return $this->belongsToMany(Travel::class);
   }

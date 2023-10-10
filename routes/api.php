@@ -23,6 +23,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 /* AuthController */
 Route::post('login', [AuthController::class, 'login']);
 Route::post('register', [AuthController::class, 'register']);
+
 /* Middleware */
 Route::middleware(['auth:sanctum'])->group(function () {
   /* AuthController */
@@ -31,4 +32,5 @@ Route::middleware(['auth:sanctum'])->group(function () {
   /* TravelController */
   Route::get('travel', [TravelController::class, 'index']);
   Route::get('travel/{id}', [TravelController::class, 'show']);
+  Route::post('travel', [TravelController::class, 'store']);
 });

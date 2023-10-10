@@ -22,6 +22,7 @@ class TravelController extends Controller
     $time = Carbon::now()->toTimeString();
     $travel = DB::table('travel')
       ->where('status', 'wait')
+      ->where('places', '>', 0)
       ->whereDate('date', '>=', $date)
       ->whereTime('date', '>=', $time)
       ->get();
@@ -47,7 +48,21 @@ class TravelController extends Controller
    */
   public function store(Request $request)
   {
-    //
+    $travel = Travel::find($request->travel_id);
+    $data = [
+      'user_id' => $request->user_id,
+      'places' => $request->places
+    ];
+
+    $travel->users()->attach([$data]);
+
+    $travel->places = $travel->places - $request->places;
+    $travel->save();
+
+    return response()->json([
+      'message' => 'Created successfully',
+      'travel' => $travel,
+    ]);
   }
 
   /**
