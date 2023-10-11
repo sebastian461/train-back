@@ -24,7 +24,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 /* AuthController */
 Route::post('login', [AuthController::class, 'login']);
 Route::post('register', [AuthController::class, 'register']);
-Route::get('user/{user}', [UserController::class, 'show']);
 
 /* Middleware */
 Route::middleware(['auth:sanctum'])->group(function () {
@@ -36,5 +35,6 @@ Route::middleware(['auth:sanctum'])->group(function () {
   Route::get('travel/{id}', [TravelController::class, 'show']);
   Route::put('travel/{id}', [TravelController::class, 'update']);
 
-  /* TravelUserController */
+  /* UserController */
+  Route::get('user/{user}', [UserController::class, 'show']);
 });
