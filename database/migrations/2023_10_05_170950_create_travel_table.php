@@ -24,7 +24,7 @@ return new class extends Migration
       $table->foreign('country_destiny')->references('id')->on('countries')->onDelete('cascade');
       $table->foreign('city_destiny')->references('id')->on('cities')->onDelete('cascade');
       $table->integer('places');
-      $table->timestamp('date');
+      $table->timestamp('travel_date');
       $table->enum('status', ['wait', 'in progress', 'finalized', 'cancelled']);
       $table->timestamps();
     });

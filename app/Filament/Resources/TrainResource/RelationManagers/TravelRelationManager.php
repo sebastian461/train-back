@@ -62,7 +62,7 @@ class TravelRelationManager extends RelationManager
           ->step(10)
           ->required()
           ->label('Plazas'),
-        DateTimePicker::make('date')
+        DateTimePicker::make('travel_date')
           ->seconds(false)
           ->native(false)
           ->minDate(now())
@@ -81,7 +81,7 @@ class TravelRelationManager extends RelationManager
         TextColumn::make('countryDestiny.name')->label('País destino'),
         TextColumn::make('cityDestiny.name')->label('Ciudad destino'),
         TextColumn::make('places')->label('Plazas'),
-        TextColumn::make('date')->label('Fecha'),
+        TextColumn::make('travel_date')->label('Fecha'),
         TextColumn::make('status')->label('Estado')
           ->badge()
           ->color(fn (string $state): string => match ($state) {
