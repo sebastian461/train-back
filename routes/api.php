@@ -32,5 +32,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
   /* TravelController */
   Route::get('travel', [TravelController::class, 'index']);
   Route::get('travel/{id}', [TravelController::class, 'show']);
-  Route::post('travel', [TravelController::class, 'store']);
+  Route::put('travel/{id}', [TravelController::class, 'update']);
+
+  /* TravelUserController */
 });

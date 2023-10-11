@@ -48,21 +48,6 @@ class TravelController extends Controller
    */
   public function store(Request $request)
   {
-    $travel = Travel::find($request->travel_id);
-    $data = [
-      'user_id' => $request->user_id,
-      'places' => $request->places
-    ];
-
-    $travel->users()->attach([$data]);
-
-    $travel->places = $travel->places - $request->places;
-    $travel->save();
-
-    return response()->json([
-      'message' => 'Created successfully',
-      'travel' => $travel,
-    ]);
   }
 
   /**
@@ -91,7 +76,20 @@ class TravelController extends Controller
    */
   public function update(Request $request, string $id)
   {
-    //
+    $travel = Travel::find($id);
+
+    $travel->users()->attach($id, [
+      'user_id' => $request->user_id,
+      'places' => $request->places
+    ]);
+
+    $travel->places = $travel->places - $request->places;
+    $travel->save();
+
+    return response()->json([
+      'message' => 'Created successfully',
+      'travel' => $travel,
+    ]);
   }
 
   /**
