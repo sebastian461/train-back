@@ -38,7 +38,7 @@ class Travel extends Model
     return $this->belongsTo(City::class, 'city_destiny');
   }
 
-  public function user(): BelongsToMany
+  public function users(): BelongsToMany
   {
     return $this->belongsToMany(User::class);
   }

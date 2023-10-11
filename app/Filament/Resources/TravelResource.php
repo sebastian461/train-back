@@ -81,10 +81,21 @@ class TravelResource extends Resource
         DateTimePicker::make('date')
           ->seconds(false)
           ->native(false)
-          ->minutesStep(15)
           ->minDate(now())
           ->required()
-          ->label('Fecha'),
+          ->label('Fecha')
+          ->hiddenOn('edit'),
+        Select::make('status')
+          ->required()
+          ->options([
+            'wait' => 'En espera',
+            'in progress' => 'En progreso',
+            'finalized' => 'Finalizado',
+            'cancelled' => 'Cancelado'
+          ])
+          ->searchable()
+          ->native(false)
+          ->hiddenOn('create')
       ]);
   }
 

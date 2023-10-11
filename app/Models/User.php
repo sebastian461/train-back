@@ -48,9 +48,12 @@ class User extends Authenticatable implements FilamentUser
     'password' => 'hashed',
   ];
 
-  public function travel(): BelongsToMany
+  public function travels(): BelongsToMany
   {
-    return $this->belongsToMany(Travel::class);
+    return $this->belongsToMany(Travel::class)
+      ->withPivot([
+        'places'
+      ]);
   }
 
   public function canAccessPanel(Panel $panel): bool
