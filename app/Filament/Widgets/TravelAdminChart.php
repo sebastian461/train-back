@@ -13,6 +13,8 @@ class TravelAdminChart extends ChartWidget
 
   protected static string $color = 'info';
 
+  protected static ?int $sort = 3;
+
   protected function getData(): array
   {
     $data = Trend::model(Travel::class)
