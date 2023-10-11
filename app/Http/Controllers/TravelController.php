@@ -18,6 +18,7 @@ class TravelController extends Controller
    */
   public function index()
   {
+    TravelJob::dispatch();
     $date = Carbon::now()->toDateString();
     $time = Carbon::now()->toTimeString();
     $travel = DB::table('travel')
@@ -26,8 +27,6 @@ class TravelController extends Controller
       ->whereDate('date', '>=', $date)
       ->whereTime('date', '>=', $time)
       ->get();
-
-    TravelJob::dispatch();
 
     return response()->json([
       'message' => 'Travels available',

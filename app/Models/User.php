@@ -50,7 +50,10 @@ class User extends Authenticatable implements FilamentUser
 
   public function travels(): BelongsToMany
   {
-    return $this->belongsToMany(Travel::class);
+    return $this->belongsToMany(Travel::class)
+      ->withPivot([
+        'places'
+      ]);
   }
 
   public function canAccessPanel(Panel $panel): bool
